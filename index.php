@@ -6,23 +6,46 @@
     <body>
 
         <?php
-        
         $token = file_get_contents("token.txt");
-        
-        $website = "https://api.telegram.org/bot".$token."/getUpdates";
+        $file = 'updateId.txt';
+
+        $website = "https://api.telegram.org/bot" . $token . "/getUpdates";
         $url = file_get_contents($website);
 
         $x = json_decode($url, true);
         $xLen = count($x['result']);
-        $ids = array();
+
 
         for ($i = 0; $i < $xLen; $i++) {
             $id = $x["result"][$i]['message']['chat']['id'];
+            $message = $x["result"][$i]['message']['text'];
+            $updateID = $x["result"][$i]['update_id'];
 
-            $ids[$i] = $id;
+            if ($message == "/megaSena") {
+                $str = file_get_contents($file);
+
+                $arrUpdateId = explode(',', $str);
+                if (!in_array($updateId, $arrUpdateId)) {
+                    # Gera os 6 números
+                    for ($i = 1; $i <= 6; $i++) {
+                        $n[] = str_pad(rand(1, 60), 2, '0', STR_PAD_LEFT);
+                    }
+
+                    # Ordena os números
+                    sort($n);
+
+                    # Exibe os números
+                    $numerosmega = implode(' - ', $n);
+
+                    $texto = urlencode($numerosmega);
+
+                    $urlenviar = "https://api.telegram.org/bot" . $token . "/sendMessage?chat_id=" . $id . "&text=" . $texto;
+                    file_get_contents($urlenviar);
+                    file_put_contents($file, $updateId.',', FILE_APPEND | LOCK_EX);
+                }
+            }
         }
         ?>
 
     </body>
 </html>
-
