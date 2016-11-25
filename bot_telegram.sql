@@ -2,11 +2,10 @@ create database Bot_telegram;
 
 use Bot_Telegram;
 
-create table telegram(
-update_id int not null primary key,
+create table tbbotresponse(
+id int auto_increment primary key ,
+update_id char not null unique key,
 comando varchar(100) not null,
 resposta varchar(100) not null,
-data_resposta date not null
+data_resposta timestamp not null default current_timestamp
 );
-
-

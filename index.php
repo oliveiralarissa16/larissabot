@@ -6,6 +6,11 @@
     <body>
 
         <?php
+        include './ConexaoBD.php';
+        
+        $banco = new ConexaoBD();
+        $conexao = $banco->conectarbanco();
+
         $token = file_get_contents("token.txt");
         $file = 'updateId.txt';
 
@@ -19,30 +24,32 @@
         for ($i = 0; $i < $xLen; $i++) {
             $id = $x["result"][$i]['message']['chat']['id'];
             $message = $x["result"][$i]['message']['text'];
-            $updateID = $x["result"][$i]['update_id'];
+            $updateId = $x["result"][$i]['update_id'];
 
             if ($message == "/megaSena") {
                 $str = file_get_contents($file);
 
                 $arrUpdateId = explode(',', $str);
                 if (!in_array($updateId, $arrUpdateId)) {
-                    # Gera os 6 números
+                    # Gera os 6 nï¿½meros
                     for ($i = 1; $i <= 6; $i++) {
                         $n[] = str_pad(rand(1, 60), 2, '0', STR_PAD_LEFT);
                     }
 
-                    # Ordena os números
+                    # Ordena os nï¿½meros
                     sort($n);
 
-                    # Exibe os números
+                    # Exibe os nï¿½meros
                     $numerosmega = implode(' - ', $n);
 
                     $texto = urlencode($numerosmega);
 
                     $urlenviar = "https://api.telegram.org/bot" . $token . "/sendMessage?chat_id=" . $id . "&text=" . $texto;
                     file_get_contents($urlenviar);
-                    file_put_contents($file, $updateId.',', FILE_APPEND | LOCK_EX);
-                }
+                    file_put_contents($file, $updateId . ',', FILE_APPEND | LOCK_EX);
+                
+                    $banco->inserirdados($updateId, $message, $texto);
+                    }
             }
         }
         ?>
