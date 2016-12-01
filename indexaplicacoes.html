@@ -5,11 +5,11 @@
 	  <meta charset="UTF-8"> 
 	
 	    <title>Bot Telegram - Exemplo</title>
-        <!--Larissa Ribeiro-->
-        <!--201611797-->
+            <!--Larissa Ribeiro-->
+       	    <!--201611797-->
 		
 		
-		<link href="larissacss.css" rel= "stylesheet" type="text/css">
+	
 
         <script type="text/javascript" id="dsds">
 		
@@ -17,44 +17,44 @@
 	        
 			function ExibeQuantidade() {
 	
-                //alert(document.getElementById("iptNumber").value);
-                var dIptURL      = document.getElementById("iptUrlTelegram");
-                var dDivResponse = document.getElementById("teste");
-				var dContador 	 = document.getElementById("iptNumber");
+                	//alert(document.getElementById("iptNumber").value);
+               		 var dIptURL      = document.getElementById("iptUrlTelegram");
+               		 var dDivResponse = document.getElementById("teste");
+			 var dContador 	 = document.getElementById("iptNumber");
               
             
-                var xhr = new XMLHttpRequest();
-                xhr.open('GET', dIptURL.value, true);
-                xhr.onload = function(e) {
+                	 var xhr = new XMLHttpRequest();
+                	 xhr.open('GET', dIptURL.value, true);
+                	 xhr.onload = function(e) {
 
 
-					if (this.status == 200) {
+			if (this.status == 200) {
 
-						var resp  = this.responseText
-						 // dDivResponse.innerText =  resp
-						 // dDivResponse.setAttribute("style","display:none");
-						var jsonData = JSON.parse(resp);
-						var result      = jsonData.result;
-						var rL           = result.length;
-						var rlUser 	= document.getElementById("iptNumber").value;
+				var resp  = this.responseText
+				// dDivResponse.innerText =  resp
+				// dDivResponse.setAttribute("style","display:none");
+				var jsonData = JSON.parse(resp);
+				var result      = jsonData.result;
+				var rL           = result.length;
+				var rlUser 	= document.getElementById("iptNumber").value;
 		 
-					if(rlUser > rL ) {
-						rlUser = rL;
-					} 
+			if(rlUser > rL ) {
+				rlUser = rL;
+			} 
 				
-						var text        = "";
-						var nome           = "";
+				var text        = "";
+				var nome           = "";
 	
-						document.title = rlUser + " Mensagens  ";
+				document.title = rlUser + " Mensagens  ";
 		    
-					for (var i=0;i < rlUser; i++){
-					  console.log(i);
-                      var rPos = result[i];
-					  text  = text + "</br>" + rPos.message.text + " em " + rPos.message.date;
-					  dContador = result.legth;
-                      //nome  = rPos.message.from.first_name;
-					  data  = rPos.message.date;
-                      dDivResponse.innerHTML = text;
+			for (var i=0;i < rlUser; i++){
+				console.log(i);
+                      		var rPos = result[i];
+				text  = text + "</br>" + rPos.message.text + " em " + rPos.message.date;
+				dContador = result.legth;
+                      		//nome  = rPos.message.from.first_name;
+				data  = rPos.message.date;
+                     	        dDivResponse.innerHTML = text;
                       
                       
                               
@@ -73,43 +73,43 @@
 			
 			function ExibeTudo() {
                
-                var dIptURL      = document.getElementById("iptUrlTelegram");
-                var dDivResponse = document.getElementById("teste");
-				var dContador 	 = document.getElementById("iptNumber")
+                	var dIptURL      = document.getElementById("iptUrlTelegram");
+                	var dDivResponse = document.getElementById("teste");
+			var dContador 	 = document.getElementById("iptNumber")
                 
             
-                var xhr = new XMLHttpRequest();
-                xhr.open('GET', dIptURL.value, true);
-                xhr.onload = function(e) {
+                	var xhr = new XMLHttpRequest();
+                	xhr.open('GET', dIptURL.value, true);
+                	xhr.onload = function(e) {
 
 
-					if (this.status == 200) {
+			if (this.status == 200) {
 
-						 var resp  = this.responseText
-						 // dDivResponse.innerText =  resp
-						 // dDivResponse.setAttribute("style","display:none");
-						var jsonData = JSON.parse(resp);
-						var result      = jsonData.result;
-						var rL          = result.length;
-						var text        = "";
-						var nome           = "";
-						document.title = rL + " Mensagens  ";
+				var resp  = this.responseText
+				 // dDivResponse.innerText =  resp
+				// dDivResponse.setAttribute("style","display:none");
+				var jsonData = JSON.parse(resp);
+				var result      = jsonData.result;
+				var rL          = result.length;
+				var text        = "";
+				var nome           = "";
+				document.title = rL + " Mensagens  ";
 			       
-					for (var i=0;i < rL; i++){
-                    var rPos = result[i];
-					text  = text + "</br>" + rPos.message.text + " em " + rPos.message.date;
-					dContador = result.legth;
-                    //nome  = rPos.message.from.first_name;
-					//data  = rPos.message.date;
-                    dDivResponse.innerHTML = text;
+			for (var i=0;i < rL; i++){
+                   		 var rPos = result[i];
+				 text  = text + "</br>" + rPos.message.text + " em " + rPos.message.date;
+				 dContador = result.legth;
+                    		 //nome  = rPos.message.from.first_name;
+				 //data  = rPos.message.date;
+                   		 dDivResponse.innerHTML = text;
                       
                       
                               
-                    }
+                   	 }
 					  
 					  
                      
-                }
+               	 }
 
                 }
                     
@@ -126,17 +126,17 @@
 
 
     </head>
-    <body style = "background-color:#16a085;">
+    	<body style = "background-color:#16a085;">
 	
 	
-	 <center><h1>Bot Telegram Larissa</h1><center>
+	 	<center><h1>Bot Telegram Larissa</h1><center>
 	
 		
 
-        <input id="iptUrlTelegram" type="text" placeholder="Informar URL do telegram" value="https://api.telegram.org/bot295732669:AAHtCumSgRNI08uZaAPdkyDqJlyTqHv2y60/getUpdates" style="width:80%" />
-        <input type="button" value="Enviar" onclick="ExibeTudo();"/>
-		<input type="number" id="iptNumber" value="14" step="5" />
-		<input type="button" id="iptButton" value="Executar" onclick="ExibeQuantidade();"/>
+       		 <input id="iptUrlTelegram" type="text" placeholder="Informar URL do telegram" value="https://api.telegram.org/bot295732669:AAHtCumSgRNI08uZaAPdkyDqJlyTqHv2y60/getUpdates" style="width:80%" />
+       		 <input type="button" value="Enviar" onclick="ExibeTudo();"/>
+		 <input type="number" id="iptNumber" value="14" step="5" />
+		 <input type="button" id="iptButton" value="Executar" onclick="ExibeQuantidade();"/>
 		
 		
 		
@@ -145,7 +145,7 @@
 		<div id="teste" style = "background-color:#1abc9c;">
 
           
-        </div>
+        	</div>
 	  
 	 
 	  
@@ -168,14 +168,14 @@
 		
 		
 		
-         <br>
+         	 <br>
 		 <br>
 		 <br>
 		 
 		
 		</article>
 		
-         <br>
+         	 <br>
 		 <br>
 		 <br>
 		 
