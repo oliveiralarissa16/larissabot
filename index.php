@@ -21,10 +21,12 @@
         $xLen = count($x['result']);
 
 
-        for ($i = 0; $i < $xLen; $i++) {
+            for ($i = 0; $i < $xLen; $i++) {
             $id = $x["result"][$i]['message']['chat']['id'];
-            $message = $x["result"][$i]['message']['text'];
             $updateId = $x["result"][$i]['update_id'];
+            
+            if(isset ($x["result"][$i]['message']['text'])){
+                $message = $x["result"][$i]['message']['text'];
 
             if ($message == "/megaSena") {
                 $str = file_get_contents($file);
@@ -52,6 +54,12 @@
                     }
             }
         }
+         elseif (isset($x["result"][$i]['message']['photo'])){
+            echo 'foto recebida';
+         }
+                
+        }
+        
         ?>
 
     </body>
