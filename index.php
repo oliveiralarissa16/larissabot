@@ -9,7 +9,6 @@
         include './ConexaoBD.php';
         
         $banco = new ConexaoBD();
-        $conexao = $banco->conectarbanco();
 
         $token = file_get_contents("token.txt");
         $file = 'updateId.txt';
